@@ -5,21 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SurveyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="CityMaster">
+        <EntityType Name="Country_Info">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Country_Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="StateID" Type="int" />
-        </EntityType>
-        <EntityType Name="CountryMaster">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="CountryCode" Type="varchar" MaxLength="5" />
+          <Property Name="Country_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Country_Pre" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Country_Name" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Country_Code" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Questionarie">
           <Key>
@@ -33,228 +26,132 @@
           <Property Name="Last_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Country" Type="int" />
           <Property Name="State" Type="int" />
-          <Property Name="City" Type="int" />
           <Property Name="Address_1" Type="text" Nullable="false" />
-          <Property Name="Address_2" Type="text" Nullable="false" />
           <Property Name="Pincode" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="EmailId" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Phone" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="IsActive" Type="int" />
-          <Property Name="IsDelete" Type="int" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
         </EntityType>
-        <EntityType Name="StateMaster">
+        <EntityType Name="State_Info">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="State_Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="CountryID" Type="int" />
+          <Property Name="State_Id" Type="int" Nullable="false" />
+          <Property Name="State_Name" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Country_RefId" Type="int" />
         </EntityType>
-        <Association Name="FK_CityMaster_StateMaster">
-          <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="0..1" />
-          <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StateMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CityMaster">
-              <PropertyRef Name="StateID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CityMaster_StateMaster1">
-          <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="0..1" />
-          <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StateMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CityMaster">
-              <PropertyRef Name="StateID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StateMaster_CountryMaster">
-          <End Role="CountryMaster" Type="Self.CountryMaster" Multiplicity="0..1" />
-          <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CountryMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="StateMaster">
-              <PropertyRef Name="CountryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StateMaster_CountryMaster1">
-          <End Role="CountryMaster" Type="Self.CountryMaster" Multiplicity="0..1" />
-          <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CountryMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="StateMaster">
-              <PropertyRef Name="CountryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Survey_CityMaster">
-          <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="0..1" />
+        <Association Name="FK_Questionarie_Country_Info">
+          <End Role="Country_Info" Type="Self.Country_Info" Multiplicity="0..1" />
           <End Role="Questionarie" Type="Self.Questionarie" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CityMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Questionarie">
-              <PropertyRef Name="City" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Survey_CountryMaster">
-          <End Role="CountryMaster" Type="Self.CountryMaster" Multiplicity="0..1" />
-          <End Role="Questionarie" Type="Self.Questionarie" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CountryMaster">
-              <PropertyRef Name="ID" />
+            <Principal Role="Country_Info">
+              <PropertyRef Name="Country_Id" />
             </Principal>
             <Dependent Role="Questionarie">
               <PropertyRef Name="Country" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Survey_StateMaster">
-          <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="0..1" />
+        <Association Name="FK_Questionarie_State_Info">
+          <End Role="State_Info" Type="Self.State_Info" Multiplicity="0..1" />
           <End Role="Questionarie" Type="Self.Questionarie" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="StateMaster">
-              <PropertyRef Name="ID" />
+            <Principal Role="State_Info">
+              <PropertyRef Name="State_Id" />
             </Principal>
             <Dependent Role="Questionarie">
               <PropertyRef Name="State" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_State_Info_Country_Info">
+          <End Role="Country_Info" Type="Self.Country_Info" Multiplicity="0..1" />
+          <End Role="State_Info" Type="Self.State_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country_Info">
+              <PropertyRef Name="Country_Id" />
+            </Principal>
+            <Dependent Role="State_Info">
+              <PropertyRef Name="Country_RefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SurveyModelStoreContainer">
-          <EntitySet Name="CityMaster" EntityType="Self.CityMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CountryMaster" EntityType="Self.CountryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country_Info" EntityType="Self.Country_Info" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Questionarie" EntityType="Self.Questionarie" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="StateMaster" EntityType="Self.StateMaster" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_CityMaster_StateMaster" Association="Self.FK_CityMaster_StateMaster">
-            <End Role="StateMaster" EntitySet="StateMaster" />
-            <End Role="CityMaster" EntitySet="CityMaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CityMaster_StateMaster1" Association="Self.FK_CityMaster_StateMaster1">
-            <End Role="StateMaster" EntitySet="StateMaster" />
-            <End Role="CityMaster" EntitySet="CityMaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StateMaster_CountryMaster" Association="Self.FK_StateMaster_CountryMaster">
-            <End Role="CountryMaster" EntitySet="CountryMaster" />
-            <End Role="StateMaster" EntitySet="StateMaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StateMaster_CountryMaster1" Association="Self.FK_StateMaster_CountryMaster1">
-            <End Role="CountryMaster" EntitySet="CountryMaster" />
-            <End Role="StateMaster" EntitySet="StateMaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Survey_CityMaster" Association="Self.FK_Survey_CityMaster">
-            <End Role="CityMaster" EntitySet="CityMaster" />
+          <EntitySet Name="State_Info" EntityType="Self.State_Info" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Questionarie_Country_Info" Association="Self.FK_Questionarie_Country_Info">
+            <End Role="Country_Info" EntitySet="Country_Info" />
             <End Role="Questionarie" EntitySet="Questionarie" />
           </AssociationSet>
-          <AssociationSet Name="FK_Survey_CountryMaster" Association="Self.FK_Survey_CountryMaster">
-            <End Role="CountryMaster" EntitySet="CountryMaster" />
+          <AssociationSet Name="FK_Questionarie_State_Info" Association="Self.FK_Questionarie_State_Info">
+            <End Role="State_Info" EntitySet="State_Info" />
             <End Role="Questionarie" EntitySet="Questionarie" />
           </AssociationSet>
-          <AssociationSet Name="FK_Survey_StateMaster" Association="Self.FK_Survey_StateMaster">
-            <End Role="StateMaster" EntitySet="StateMaster" />
-            <End Role="Questionarie" EntitySet="Questionarie" />
+          <AssociationSet Name="FK_State_Info_Country_Info" Association="Self.FK_State_Info_Country_Info">
+            <End Role="Country_Info" EntitySet="Country_Info" />
+            <End Role="State_Info" EntitySet="State_Info" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SurveyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="CityMaster">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="StateID" Type="Int32" />
-          <NavigationProperty Name="StateMaster" Relationship="Self.FK_CityMaster_StateMaster" FromRole="CityMaster" ToRole="StateMaster" />
-          <NavigationProperty Name="Questionarie" Relationship="SurveyModel.FK_Survey_CityMaster" FromRole="CityMaster" ToRole="Questionarie" />
-        </EntityType>
-        <EntityType Name="CountryMaster">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CountryCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="StateMaster" Relationship="Self.FK_StateMaster_CountryMaster" FromRole="CountryMaster" ToRole="StateMaster" />
-          <NavigationProperty Name="Questionarie" Relationship="SurveyModel.FK_Survey_CountryMaster" FromRole="CountryMaster" ToRole="Questionarie" />
-        </EntityType>
-        <EntityType Name="StateMaster">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CountryID" Type="Int32" />
-          <NavigationProperty Name="CityMaster" Relationship="Self.FK_CityMaster_StateMaster" FromRole="StateMaster" ToRole="CityMaster" />
-          <NavigationProperty Name="CountryMaster" Relationship="Self.FK_StateMaster_CountryMaster" FromRole="StateMaster" ToRole="CountryMaster" />
-          <NavigationProperty Name="Questionarie" Relationship="SurveyModel.FK_Survey_StateMaster" FromRole="StateMaster" ToRole="Questionarie" />
-        </EntityType>
-        <Association Name="FK_CityMaster_StateMaster">
-          <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="0..1" />
-          <End Role="CityMaster" Type="Self.CityMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StateMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CityMaster">
-              <PropertyRef Name="StateID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StateMaster_CountryMaster">
-          <End Role="CountryMaster" Type="Self.CountryMaster" Multiplicity="0..1" />
-          <End Role="StateMaster" Type="Self.StateMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CountryMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="StateMaster">
-              <PropertyRef Name="CountryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SurveyEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CityMaster" EntityType="Self.CityMaster" />
-          <EntitySet Name="CountryMaster" EntityType="Self.CountryMaster" />
-          <EntitySet Name="StateMaster" EntityType="Self.StateMaster" />
-          <AssociationSet Name="FK_CityMaster_StateMaster" Association="Self.FK_CityMaster_StateMaster">
-            <End Role="StateMaster" EntitySet="StateMaster" />
-            <End Role="CityMaster" EntitySet="CityMaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StateMaster_CountryMaster" Association="Self.FK_StateMaster_CountryMaster">
-            <End Role="CountryMaster" EntitySet="CountryMaster" />
-            <End Role="StateMaster" EntitySet="StateMaster" />
+          <EntitySet Name="Country_Info" EntityType="SurveyModel.Country_Info" />
+          <EntitySet Name="State_Info" EntityType="SurveyModel.State_Info" />
+          <AssociationSet Name="FK_State_Info_Country_Info" Association="SurveyModel.FK_State_Info_Country_Info">
+            <End Role="Country_Info" EntitySet="Country_Info" />
+            <End Role="State_Info" EntitySet="State_Info" />
           </AssociationSet>
           <EntitySet Name="Questionarie" EntityType="SurveyModel.Questionarie" />
-          <AssociationSet Name="FK_Survey_CityMaster" Association="SurveyModel.FK_Survey_CityMaster">
-            <End Role="CityMaster" EntitySet="CityMaster" />
+          <AssociationSet Name="FK_Questionarie_Country_Info" Association="SurveyModel.FK_Questionarie_Country_Info">
+            <End Role="Country_Info" EntitySet="Country_Info" />
             <End Role="Questionarie" EntitySet="Questionarie" />
           </AssociationSet>
-          <AssociationSet Name="FK_Survey_CountryMaster" Association="SurveyModel.FK_Survey_CountryMaster">
-            <End Role="CountryMaster" EntitySet="CountryMaster" />
-            <End Role="Questionarie" EntitySet="Questionarie" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Survey_StateMaster" Association="SurveyModel.FK_Survey_StateMaster">
-            <End Role="StateMaster" EntitySet="StateMaster" />
+          <AssociationSet Name="FK_Questionarie_State_Info" Association="SurveyModel.FK_Questionarie_State_Info">
+            <End Role="State_Info" EntitySet="State_Info" />
             <End Role="Questionarie" EntitySet="Questionarie" />
           </AssociationSet>
           </EntityContainer>
+        <EntityType Name="Country_Info">
+          <Key>
+            <PropertyRef Name="Country_Id" />
+          </Key>
+          <Property Name="Country_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country_Pre" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Country_Name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Country_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="State_Info" Relationship="SurveyModel.FK_State_Info_Country_Info" FromRole="Country_Info" ToRole="State_Info" />
+          <NavigationProperty Name="Questionarie" Relationship="SurveyModel.FK_Questionarie_Country_Info" FromRole="Country_Info" ToRole="Questionarie" />
+        </EntityType>
+        <EntityType Name="State_Info">
+          <Key>
+            <PropertyRef Name="State_Id" />
+          </Key>
+          <Property Name="State_Id" Type="Int32" Nullable="false" />
+          <Property Name="State_Name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Country_RefId" Type="Int32" />
+          <NavigationProperty Name="Country_Info" Relationship="SurveyModel.FK_State_Info_Country_Info" FromRole="State_Info" ToRole="Country_Info" />
+          <NavigationProperty Name="Questionarie" Relationship="SurveyModel.FK_Questionarie_State_Info" FromRole="State_Info" ToRole="Questionarie" />
+        </EntityType>
+        <Association Name="FK_State_Info_Country_Info">
+          <End Type="SurveyModel.Country_Info" Role="Country_Info" Multiplicity="0..1" />
+          <End Type="SurveyModel.State_Info" Role="State_Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country_Info">
+              <PropertyRef Name="Country_Id" />
+            </Principal>
+            <Dependent Role="State_Info">
+              <PropertyRef Name="Country_RefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="Questionarie">
           <Key>
             <PropertyRef Name="Id" />
@@ -267,50 +164,37 @@
           <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Country" Type="Int32" />
           <Property Name="State" Type="Int32" />
-          <Property Name="City" Type="Int32" />
           <Property Name="Address_1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Address_2" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Pincode" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="EmailId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="IsActive" Type="Int32" />
-          <Property Name="IsDelete" Type="Int32" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreatedBy" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="CityMaster" Relationship="SurveyModel.FK_Survey_CityMaster" FromRole="Questionarie" ToRole="CityMaster" />
-          <NavigationProperty Name="CountryMaster" Relationship="SurveyModel.FK_Survey_CountryMaster" FromRole="Questionarie" ToRole="CountryMaster" />
-          <NavigationProperty Name="StateMaster" Relationship="SurveyModel.FK_Survey_StateMaster" FromRole="Questionarie" ToRole="StateMaster" />
+          <Property Name="Designation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <NavigationProperty Name="Country_Info" Relationship="SurveyModel.FK_Questionarie_Country_Info" FromRole="Questionarie" ToRole="Country_Info" />
+          <NavigationProperty Name="State_Info" Relationship="SurveyModel.FK_Questionarie_State_Info" FromRole="Questionarie" ToRole="State_Info" />
         </EntityType>
-        <Association Name="FK_Survey_CityMaster">
-          <End Type="SurveyModel.CityMaster" Role="CityMaster" Multiplicity="0..1" />
+        <Association Name="FK_Questionarie_Country_Info">
+          <End Type="SurveyModel.Country_Info" Role="Country_Info" Multiplicity="0..1" />
           <End Type="SurveyModel.Questionarie" Role="Questionarie" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CityMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Questionarie">
-              <PropertyRef Name="City" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Survey_CountryMaster">
-          <End Type="SurveyModel.CountryMaster" Role="CountryMaster" Multiplicity="0..1" />
-          <End Type="SurveyModel.Questionarie" Role="Questionarie" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CountryMaster">
-              <PropertyRef Name="ID" />
+            <Principal Role="Country_Info">
+              <PropertyRef Name="Country_Id" />
             </Principal>
             <Dependent Role="Questionarie">
               <PropertyRef Name="Country" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Survey_StateMaster">
-          <End Type="SurveyModel.StateMaster" Role="StateMaster" Multiplicity="0..1" />
+        <Association Name="FK_Questionarie_State_Info">
+          <End Type="SurveyModel.State_Info" Role="State_Info" Multiplicity="0..1" />
           <End Type="SurveyModel.Questionarie" Role="Questionarie" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="StateMaster">
-              <PropertyRef Name="ID" />
+            <Principal Role="State_Info">
+              <PropertyRef Name="State_Id" />
             </Principal>
             <Dependent Role="Questionarie">
               <PropertyRef Name="State" />
@@ -323,46 +207,38 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SurveyModelStoreContainer" CdmEntityContainer="SurveyEntities">
-          <EntitySetMapping Name="CityMaster">
-            <EntityTypeMapping TypeName="SurveyModel.CityMaster">
-              <MappingFragment StoreEntitySet="CityMaster">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <EntitySetMapping Name="Country_Info">
+            <EntityTypeMapping TypeName="SurveyModel.Country_Info">
+              <MappingFragment StoreEntitySet="Country_Info">
+                <ScalarProperty Name="Country_Code" ColumnName="Country_Code" />
+                <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+                <ScalarProperty Name="Country_Pre" ColumnName="Country_Pre" />
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CountryMaster">
-            <EntityTypeMapping TypeName="SurveyModel.CountryMaster">
-              <MappingFragment StoreEntitySet="CountryMaster">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StateMaster">
-            <EntityTypeMapping TypeName="SurveyModel.StateMaster">
-              <MappingFragment StoreEntitySet="StateMaster">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <EntitySetMapping Name="State_Info">
+            <EntityTypeMapping TypeName="SurveyModel.State_Info">
+              <MappingFragment StoreEntitySet="State_Info">
+                <ScalarProperty Name="Country_RefId" ColumnName="Country_RefId" />
+                <ScalarProperty Name="State_Name" ColumnName="State_Name" />
+                <ScalarProperty Name="State_Id" ColumnName="State_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Questionarie">
             <EntityTypeMapping TypeName="SurveyModel.Questionarie">
               <MappingFragment StoreEntitySet="Questionarie">
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="EmailId" ColumnName="EmailId" />
                 <ScalarProperty Name="Pincode" ColumnName="Pincode" />
-                <ScalarProperty Name="Address_2" ColumnName="Address_2" />
                 <ScalarProperty Name="Address_1" ColumnName="Address_1" />
-                <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />

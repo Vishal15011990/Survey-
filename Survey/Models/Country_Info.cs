@@ -12,22 +12,22 @@ namespace Survey.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class StateMaster
+    public partial class Country_Info
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public StateMaster()
+        public Country_Info()
         {
-            this.CityMaster = new HashSet<CityMaster>();
+            this.State_Info = new HashSet<State_Info>();
             this.Questionarie = new HashSet<Questionarie>();
         }
     
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public Nullable<int> CountryID { get; set; }
+        public int Country_Id { get; set; }
+        public string Country_Pre { get; set; }
+        public string Country_Name { get; set; }
+        public string Country_Code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CityMaster> CityMaster { get; set; }
-        public virtual CountryMaster CountryMaster { get; set; }
+        public virtual ICollection<State_Info> State_Info { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Questionarie> Questionarie { get; set; }
     }

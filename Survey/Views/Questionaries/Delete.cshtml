@@ -1,0 +1,160 @@
+﻿@model Survey.Models.Questionarie
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Questionarie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Company_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.First_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.First_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Last_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Last_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address_1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address_1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address_2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address_2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pincode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pincode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDelete)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDelete)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CityMaster.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CityMaster.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryMaster.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryMaster.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StateMaster.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StateMaster.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -22,19 +22,18 @@ namespace Survey.Models
         public string Last_Name { get; set; }
         public Nullable<int> Country { get; set; }
         public Nullable<int> State { get; set; }
-        public Nullable<int> City { get; set; }
         public string Address_1 { get; set; }
-        public string Address_2 { get; set; }
         public string Pincode { get; set; }
         public string EmailId { get; set; }
         public string Phone { get; set; }
-        public Nullable<int> IsActive { get; set; }
-        public Nullable<int> IsDelete { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public System.Guid CreatedBy { get; set; }
+        public string Designation { get; set; }
+        public string City { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public Nullable<bool> IsDelete { get; set; }
     
-        public virtual CityMaster CityMaster { get; set; }
-        public virtual CountryMaster CountryMaster { get; set; }
-        public virtual StateMaster StateMaster { get; set; }
+        public virtual Country_Info Country_Info { get; set; }
+        public virtual State_Info State_Info { get; set; }
     }
 }

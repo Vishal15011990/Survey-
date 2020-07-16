@@ -129,13 +129,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuestionariesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CityMaster.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CountryMaster.cs">
+    <Compile Include="Models\Country_Info.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
@@ -156,7 +154,7 @@
     <Compile Include="Models\Questionarie.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\StateMaster.cs">
+    <Compile Include="Models\State_Info.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -166,6 +164,29 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Custom.css" />
+    <Content Include="Content\Hamburger.css" />
+    <Content Include="Content\Img\Img.jpg" />
+    <Content Include="Content\Img\spinner.gif" />
+    <Content Include="Content\LobianJS\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="Content\LobianJS\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\LobianJS\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="Content\LobianJS\dist\css\lobibox.css" />
+    <Content Include="Content\LobianJS\dist\css\lobibox.min.css" />
+    <Content Include="Content\LobianJS\dist\js\lobibox.js" />
+    <Content Include="Content\LobianJS\dist\js\lobibox.min.js" />
+    <Content Include="Content\LobianJS\dist\js\messageboxes.js" />
+    <Content Include="Content\LobianJS\dist\js\messageboxes.min.js" />
+    <Content Include="Content\LobianJS\dist\js\notifications.js" />
+    <Content Include="Content\LobianJS\dist\js\notifications.min.js" />
+    <Content Include="Content\LobianJS\dist\sounds\sound1.ogg" />
+    <Content Include="Content\LobianJS\dist\sounds\sound2.ogg" />
+    <Content Include="Content\LobianJS\dist\sounds\sound3.ogg" />
+    <Content Include="Content\LobianJS\dist\sounds\sound4.ogg" />
+    <Content Include="Content\LobianJS\dist\sounds\sound5.ogg" />
+    <Content Include="Content\LobianJS\dist\sounds\sound6.ogg" />
+    <Content Include="Content\LobianJS\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\LobianJS\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -189,6 +210,88 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\LobianJS\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Include="Content\LobianJS\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\LobianJS\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\LobianJS\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\LobianJS\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\LobianJS\bootstrap\less\.csscomb.json" />
+    <Content Include="Content\LobianJS\bootstrap\less\.csslintrc" />
+    <Content Include="Content\LobianJS\bootstrap\less\alerts.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\badges.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\bootstrap.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\breadcrumbs.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\button-groups.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\buttons.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\carousel.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\close.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\code.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\component-animations.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\dropdowns.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\forms.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\glyphicons.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\grid.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\input-groups.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\jumbotron.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\labels.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\list-group.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\media.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\alerts.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\background-variant.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\border-radius.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\buttons.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\center-block.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\clearfix.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\forms.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\gradients.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\grid-framework.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\grid.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\hide-text.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\image.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\labels.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\list-group.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\nav-divider.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\nav-vertical-align.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\opacity.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\pagination.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\panels.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\progress-bar.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\reset-filter.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\resize.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\responsive-visibility.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\size.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\tab-focus.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\table-row.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\text-emphasis.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\text-overflow.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\mixins\vendor-prefixes.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\modals.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\navbar.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\navs.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\normalize.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\pager.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\pagination.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\panels.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\popovers.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\print.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\progress-bars.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\responsive-embed.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\responsive-utilities.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\scaffolding.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\tables.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\theme.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\thumbnails.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\tooltip.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\type.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\utilities.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\variables.less" />
+    <Content Include="Content\LobianJS\bootstrap\less\wells.less" />
+    <Content Include="Content\LobianJS\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\LobianJS\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\LobianJS\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\LobianJS\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\LobianJS\font-awesome\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -212,6 +315,13 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Questionaries\Create.cshtml" />
+    <Content Include="Views\Questionaries\Delete.cshtml" />
+    <Content Include="Views\Questionaries\Details.cshtml" />
+    <Content Include="Views\Questionaries\Edit.cshtml" />
+    <Content Include="Views\Questionaries\Index.cshtml" />
+    <Content Include="Views\Questionaries\Credentials.cshtml" />
+    <Content Include="Views\Shared\Custom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

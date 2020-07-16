@@ -25,9 +25,8 @@ namespace Survey.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CityMaster> CityMaster { get; set; }
-        public virtual DbSet<CountryMaster> CountryMaster { get; set; }
-        public virtual DbSet<StateMaster> StateMaster { get; set; }
+        public virtual DbSet<Country_Info> Country_Info { get; set; }
+        public virtual DbSet<State_Info> State_Info { get; set; }
         public virtual DbSet<Questionarie> Questionarie { get; set; }
     }
 }

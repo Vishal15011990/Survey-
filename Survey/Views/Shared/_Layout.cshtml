@@ -1,11 +1,167 @@
 ﻿<!DOCTYPE html>
+
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <style>
+        #nav1 a.user2 {
+            font-size: 8px;
+            margin-top: -11px;
+        }
+
+        #nav1 li.user3 {
+            margin-left: -153px;
+            margin-top: 5px;
+        }
+
+        #nav1 a.user3.btn.btn-info {
+            margin-top: 3px;
+            width: 112px;
+            margin-left: 94px;
+        }
+
+        #nav1 {
+            position: relative;
+            width: 1200px;
+            font-size: 0;
+            margin-left: 200px;
+            margin-top: -40px;
+        }
+
+            #nav1 a {
+                font-size: 16px;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: white;
+                text-decoration: none;
+                line-height: 0px;
+                position: relative;
+                z-index: 1;
+                display: inline-block;
+                cursor: pointer;
+                width: 168px;
+                margin-left: 90px;
+            }
+
+                #nav1 a:hover {
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+
+        .nav > li {
+            position: relative;
+            display: block;
+            /* padding: 43px; */
+            width: 156px;
+        }
+        /*            #nav1 .animation {
+                position: absolute;
+                height: 5px;
+                bottom: 0;
+                z-index: 0;
+                background: #1abc9c;
+                width: 70px;
+                border-radius: 5px;
+                margin-left: 2px;
+                transition: all .5s ease 0s;
+            }*/
+
+
+        a {
+            color: #fff;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 0.15em;
+            display: inline-block;
+            padding: 15px 20px;
+            position: relative;
+        }
+
+            a:after {
+                background: none repeat scroll 0 0 transparent;
+                bottom: 0;
+                content: "";
+                display: block;
+                height: 2px;
+                left: 50%;
+                position: absolute;
+                /*background: #fff;*/
+                background: #1abc9c;
+                transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            }
+
+        #a1:hover:after {
+            width: 40%;
+            left: 10px;
+        }
+
+        #a2:hover:after {
+            width: 65%;
+            left: 10px;
+        }
+
+        #a3:hover:after {
+            width: 85%;
+            left: 10px;
+        }
+
+        #a4:hover:after {
+            width: 85%;
+            left: 10px;
+        }
+
+        #a5:hover:after {
+            width: 65%;
+            left: 10px;
+        }
+
+        .navbar-inverse {
+            background-color: #39424e;
+        }
+
+        /*        ul.nav-wrap {
+            width: 100px;
+            float: left;
+            position: absolute;
+            margin-top: -56px;
+            margin-left: 800px;
+        }*/
+        img#spinner {
+            margin-left: 27px;
+            margin-top: -7px;
+            width: 70%;
+        }
+
+        .container .spinner-border {
+            /* height: 20px; */
+            /*background-color: red;*/
+            height: 97px;
+            margin-top: 0px;
+            width: 200px;
+            margin-left: 487px;
+            position: absolute;
+        }
+    </style>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#spinner").hide();
+
+            $("#loader").on('click', function () {
+                $("#spinner").show();
+            });
+        });
+    </script>
+
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -16,18 +172,39 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="#" class="navbar-brand">ProAcc Survey</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <ul class="nav navbar-nav" id="nav1">
+                    <li><a class="nav-link" href="#" id="a1">Home</a></li>
+                    <li><a class="nav-link" href="#" id="a2">About US</a></li>
+                    <li><a class="nav-link" href="#" id="a3">Contact Us</a></li>
+                    <li><a class="nav-link" href="#" id="a4">Technology</a></li>
+                    <li><a class="nav-link" href="#" id="a5">Services</a></li>
+
+                    @if (Session["ID"] == null)
+                    {
+                        Response.Redirect("~/Questionaries/Credentials");
+                    }
+                    else
+                    {
+                        <li class="user1"><a class="user2"> Welcome - @Session["Username"].ToString()</a></li>
+                        <li class="user3"><a class="user3 btn btn-info" id="loader" href="@Url.Action("Credentials","Questionaries")">Log Out</a> </li>
+                    }
                 </ul>
+
+
             </div>
         </div>
     </div>
+
+
+
+
     <div class="container body-content">
+        <div class="spinner-border">
+            <img src="~/Content/Img/spinner.gif" id="spinner" />
+        </div>
         @RenderBody()
         <hr />
         <footer>
@@ -35,8 +212,6 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
 </body>
 </html>

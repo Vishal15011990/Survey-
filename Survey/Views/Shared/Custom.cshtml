@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/LobianJS/dist/css/lobibox.min.css" rel="stylesheet" />
+    <script src="~/Content/LobianJS/dist/js/lobibox.min.js"></script>
+    <style>
+        .navbar.navbar-inverse.navbar-fixed-top {
+            box-shadow: -1px 5px 11px, -1px 9px 35px;
+        }
+
+        .navbar-nav {
+            float: left;
+            margin: 0;
+            margin-top: -91px;
+        }
+
+        .navbar-inverse .navbar-brand {
+            color: white;
+            font-weight: bolder;
+            font-size: 2em;
+            letter-spacing: 2px;
+        }
+
+
+        #nav1 {
+            position: relative;
+            width: 1200px;
+            font-size: 0;
+            margin-left: 252px;
+            margin-top: -70px;
+        }
+
+        .navbar-nav > li > a {
+            padding-top: 16px;
+            padding-bottom: 10px;
+            line-height: 0px;
+            width: 0px;
+            font-weight: bold;
+        }
+
+        a#a1 {
+            margin-left: 41px;
+        }
+
+        a#a1, #a2, #a3, #a4, #a5 {
+            width: 156px;
+            padding: 7px;
+        }
+
+        #nav1 .active {
+            text-decoration: none;
+            cursor: pointer;
+            color: orangered;
+        }
+
+        a.active:after {
+            background: none repeat scroll 0 0 transparent;
+            bottom: 0;
+            content: "";
+            display: block;
+            height: 4px;
+            left: 50%;
+            position: absolute;
+            /*background: #fff;*/
+            background: #1abc9c;
+            width: 55px;
+            margin-left: -72px;
+            top: 26px;
+            border-radius: 10px;
+        }
+
+        #nav1 a:hover {
+            text-decoration: none;
+            cursor: pointer;
+            color: orangered;
+        }
+
+        .nav > li {
+            position: relative;
+            display: block;
+            /* padding: 43px; */
+            width: 3px;
+            margin-left: 148px;
+        }
+
+        a {
+            color: #fff;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 0.15em;
+            display: inline-block;
+            position: relative;
+        }
+
+            a:after {
+                background: none repeat scroll 0 0 transparent;
+                bottom: 0;
+                content: "";
+                display: block;
+                height: 4px;
+                left: 50%;
+                position: absolute;
+                /*background: #fff;*/
+                background: #1abc9c;
+                transition: width 0.3s ease 0s, left 0.3s ease 0s;
+                top: 26px;
+                border-radius: 4px;
+            }
+
+        #a1:hover:after {
+            width: 40%;
+            left: 75px;
+        }
+
+        #a2:hover:after {
+            width: 65%;
+            left: 0px;
+        }
+
+        #a3:hover:after {
+            width: 85%;
+            left: 0px;
+        }
+
+        #a4:hover:after {
+            width: 85%;
+            left: 0px;
+        }
+
+        #a5:hover:after {
+            width: 65%;
+            left: 0px;
+        }
+
+        .navbar-inverse {
+            background-color: #39424e;
+        }
+        /*        span:hover {
+            color: white;
+        }
+
+        .navbar-inverse {
+            background-color: #39424e;
+        }
+
+        ul.nav-wrap {
+            width: 100px;
+            float: left;
+            position: absolute;
+            margin-top: -56px;
+            margin-left: 800px;
+        }*/
+    </style>
+
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("ProAcc Survey", " ", "", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav" id="nav1">
+                    <li><a class="nav-link active" href="#" id="a1">Home</a></li>
+                    <li><a class="nav-link" href="#" id="a2">About US</a></li>
+                    <li><a class="nav-link" href="#" id="a3">Contact Us</a></li>
+                    <li><a class="nav-link" href="#" id="a4">Technology</a></li>
+                    <li><a class="nav-link" href="#" id="a5">Services</a></li>
+                </ul>
+
+                @*<nav class="nav navbar-nav ">
+
+            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="#">About US</a>
+            <a class="nav-link" href="#">Contact Us</a>
+            <a class="nav-link" href="#">Technology</a>
+            <a class="nav-link" href="#">Services</a>
+            <div class="animation start-home"></div>
+            <ul class="nav-wrap ">
+                <li class="nav-btn button-item">
+                    <button class="login pull-right btn btn-dark btn-default" type="button" id="btnclick">  Log In  </button>
+                </li>
+            </ul>
+        </nav>*@
+            </div>
+        </div>
+ 
+
+    <div>
+        @RenderBody()
+        
+    </div>
+    <hr />
+    <div class="container-fluid" style="width: 100%;
+        position: relative;box-shadow: 11px -1px 11px, 3px 0px 0px, 8px 1px 5px, 4px 3px 9px;">
+        <footer>
+            <p>
+                Created <i class="fa fa-heart"></i> by
+                <a target="_blank" href="https://promantusinc.com">Promantus Inc</a>
+                - About Us|Terms Of Service |Privacy Policy |Estd.2020.
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

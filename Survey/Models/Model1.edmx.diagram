@@ -4,16 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3fe9628a4aff4f29b63618f2d7fca91f" Name="Diagram1" ZoomLevel="91">
-        <EntityTypeShape EntityType="SurveyModel.CityMaster" Width="1.5" PointX="4.375" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SurveyModel.CountryMaster" Width="1.5" PointX="9.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SurveyModel.StateMaster" Width="1.5" PointX="6.625" PointY="1.25" IsExpanded="true" />
-        <AssociationConnector Association="SurveyModel.FK_CityMaster_StateMaster" ManuallyRouted="false" />
-        <AssociationConnector Association="SurveyModel.FK_StateMaster_CountryMaster" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="SurveyModel.Questionarie" Width="1.5" PointX="1.75" PointY="0.5" />
-        <AssociationConnector Association="SurveyModel.FK_Survey_CityMaster" />
-        <AssociationConnector Association="SurveyModel.FK_Survey_CountryMaster" />
-        <AssociationConnector Association="SurveyModel.FK_Survey_StateMaster" />
+      <Diagram DiagramId="3fe9628a4aff4f29b63618f2d7fca91f" Name="Diagram1" ZoomLevel="70">
+        <EntityTypeShape EntityType="SurveyModel.Country_Info" Width="1.5" PointX="4" PointY="0.75" />
+        <EntityTypeShape EntityType="SurveyModel.State_Info" Width="1.5" PointX="6.25" PointY="0.75" />
+        <AssociationConnector Association="SurveyModel.FK_State_Info_Country_Info" />
+        <EntityTypeShape EntityType="SurveyModel.Questionarie" Width="1.5" PointX="8.5" PointY="0.75" />
+        <AssociationConnector Association="SurveyModel.FK_Questionarie_Country_Info" />
+        <AssociationConnector Association="SurveyModel.FK_Questionarie_State_Info" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
